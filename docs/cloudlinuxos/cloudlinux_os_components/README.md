@@ -2931,6 +2931,8 @@ $AddUnixListenSocket /usr/share/cagefs-skeleton/dev/log
 
 To remove presence of <span class="notranslate"> _dev/log_ </span> inside CageFS, remove that file, and restart rsyslog service.
 
+**cagefs-no-dev-log flag**: On systems using systemd-journal (where <span class="notranslate"> _/dev/log_ </span> is a symlink to the journal socket), you can enable the <span class="notranslate"> cagefs-no-dev-log </span> flag to skip creating <span class="notranslate"> _/dev/log_ </span> in the CageFS skeleton. Use <span class="notranslate"> `cagefsctl --enable-cagefs-no-dev-log` </span> to enable, or <span class="notranslate"> `cagefsctl --disable-cagefs-no-dev-log` </span> to restore. See [CageFS CLI](/cloudlinuxos/command-line_tools/#cagefs).
+
 
 #### Excluding mount points
 

@@ -51,7 +51,7 @@ Options:
 | | <span class="notranslate"> --force-update-etc </span> |force update of _/etc_ directories for users in CageFS|
 | | <span class="notranslate"> --reconfigure-cagefs </span> |configure CageFS integration with other software (control panels, database servers, etc)|
 
-Use the following syntax to manage users:    
+Use the following syntax to manage users:
 <span class="notranslate"> `/usr/sbin/cagefsctl [OPTIONS] username [more usernames]` </span>
 
 Options:
@@ -77,7 +77,7 @@ Options:
 | | <span class="notranslate"> --getprefix </span> |display prefix for user|
 
 <span class="notranslate"> PHP Selector </span> related options:
- 
+
 | | |
 |-|-|
 | <span class="notranslate"> --setup-cl-selector </span> | setup <span class="notranslate"> PHP Selector </span> or register new alt-php versions|
@@ -96,6 +96,8 @@ Common options:
 | | | |
 |-|-|-|
 |___ | <span class="notranslate"> --disable-cagefs </span> |disable CageFS|
+| | <span class="notranslate"> --enable-cagefs-no-dev-log </span> |enable cagefs-no-dev-log flag: stop creating _/dev/log_ in CageFS skeleton (useful when using systemd-journal socket)|
+| | <span class="notranslate"> --disable-cagefs-no-dev-log </span> |disable cagefs-no-dev-log flag: restore _/dev/log_ in CageFS skeleton|
 | | <span class="notranslate"> --cagefs-status </span> |print CageFS status: ( <span class="notranslate"> enabled </span> or <span class="notranslate"> disabled </span> )|
 | | <span class="notranslate"> --set-min-uid </span> |Set min <span class="notranslate"> UID </span> |
 | | <span class="notranslate"> --get-min-uid </span> |Display current MIN_UID setting|
@@ -184,7 +186,7 @@ If a login fails, it can be due to various reasons, that can only be determined 
 
 7. _Check cagefs virt.mp files syntax_ - reads all _/var/cagefs///virt.mp_ files (if any) and checks their syntax validity. At the moment there are only two checks of the syntax: the file is not empty if it exists, and the file is not starting with the sub directory definitions (with @). To learn more, visit [Per-user virtual mount points](/cloudlinuxos/cloudlinux_os_components/#per-user-virtual-mount-points)
 
-8. _Check MultiPHP system default PHP version_ – checks that MultiPHP system default PHP version is **NOT** Alt-PHP. That means <span class="notranslate"> PHP Selector </span> should work properly. If MultiPHP system default PHP version is Alt-PHP, <span class="notranslate"> PHP Selector </span> does not work and should be disabled. To learn more on how to disable <span class="notranslate"> PHP Selector, </span> visit [cPanel LVE Manager](/cloudlinuxos/cloudlinux_os_components/#php-selector) 
+8. _Check MultiPHP system default PHP version_ – checks that MultiPHP system default PHP version is **NOT** Alt-PHP. That means <span class="notranslate"> PHP Selector </span> should work properly. If MultiPHP system default PHP version is Alt-PHP, <span class="notranslate"> PHP Selector </span> does not work and should be disabled. To learn more on how to disable <span class="notranslate"> PHP Selector, </span> visit [cPanel LVE Manager](/cloudlinuxos/cloudlinux_os_components/#php-selector)
 
 Possible results of the checks:
 
@@ -327,7 +329,7 @@ lveinfo [-h] [-v] [--dbgov DBGOV] [-f YYYY-MM-DD[HH:MM]]
 * <span class="notranslate"> `--servers-info` </span> – show servers LVE versions
 * <span class="notranslate"> `--show-all` </span> – full output (show all limits); brief output is default; equivalent <span class="notranslate">`--show-columns all`</span>
 * <span class="notranslate"> `--show-columns COLUMN_NAME [COLUMN_NAME ...]` </span> – show only the listed columns; <span class="notranslate">`all`</span> for all supported columns
-  
+
   | | |
   |-|-|
   |<span class="notranslate">COLUMN_NAME</span> |DESCRIPTION|
@@ -377,7 +379,7 @@ lveinfo [-h] [-v] [--dbgov DBGOV] [-f YYYY-MM-DD[HH:MM]]
 * <span class="notranslate"> `-t YYYY-MM-DD[ HH:MM]`,  `--to YYYY-MM-DD[ HH:MM]`</span> – run report up to date and time in <span class="notranslate">`[YY]YY-MM-DD[ HH:MM]`</span> format; if not present, reports results up to now
 * <span class="notranslate"> `--period PERIOD` </span> – time period; specify minutes with <span class="notranslate"> `m`, `h`</span> - hours, days with <span class="notranslate"> `d`</span>, and values: <span class="notranslate"> `today`, `yesterday`; `5m`</span> - last 5 minutes, `4h` - last four hours, `2d` - last 2 days, as well as <span class="notranslate"> `today`</span>
 * <span class="notranslate"> `--by-fault ALIAS [ALIAS ...]` </span> – show LVEs which failed on max processes limit or memory limit
-  
+
   | | | | |
   |-|-|-|-|
   |<span class="notranslate">ALIAS</span>|<span class="notranslate">ALIAS</span>|<span class="notranslate">ALIAS</span>|DESCRIPTION|
@@ -390,7 +392,7 @@ lveinfo [-h] [-v] [--dbgov DBGOV] [-f YYYY-MM-DD[HH:MM]]
   |<span class="notranslate">`iops`</span>|<span class="notranslate">`iops`</span>|<span class="notranslate">`IOPSf`</span>|total number of max io operations faults (LVE version >= 8)|
   |<span class="notranslate">`any_faults`</span>|<span class="notranslate">`any`</span>|<span class="notranslate">`anyF`</span>|total number of faults of all types|
 * <span class="notranslate"> `-r FAULTS, --threshold FAULTS` </span>– in combination with <span class="notranslate">`--by-fault`</span>, shows only LVEs with number of faults above; default `1`
-  
+
 Prefixes <span class="notranslate">`Kb`, `Mb` </span> and <span class="notranslate">`Gb`</span> indicates powers of 1024.
 
 :::tip Note
@@ -500,7 +502,7 @@ Reads LVE system state snapshots for <span class="notranslate">LVE/user</span>.
 * <span class="notranslate">`-j`, `--json`</span> – output in json format (default: <span class="notranslate">`False`</span>)
 * <span class="notranslate">`--stats`</span> – output stats, instead of snapshots (default: <span class="notranslate">`False`</span>)
 * <span class="notranslate">`--unit unit`</span> – group stats by time unit. Example values `3h`, `24h`, `1d`, `1w`. Other possible value is <span class="notranslate">`auto`</span> for grouping by each incident (default: <span class="notranslate">`1d`</span>)
-  
+
 One of <span class="notranslate">`-u --user`</span> or <span class="notranslate">`-i --id`</span> should be specified.
 
 <div class="notranslate">
@@ -567,7 +569,7 @@ cloudlinux-top [-h] [-v] [-j] [--hide-mysql]
   "mySqlGov": "enabled",              # possible values: enabled, error
   "mySqlGovMode": "abusers",          # see “MySQL Governor > Modes Of Operation”
                                       # if MySQL Governor is not enabled, value is "none"
- 
+
   "resellers": [                      # list of resellers (available only with
                                       # reseller limits feature)
       {
@@ -644,7 +646,7 @@ The format of the error message is the same as in the other <span class="notrans
 <div class="notranslate">
 
 ```
-cloudlinux-top --json 
+cloudlinux-top --json
 ```
 ```
 {
@@ -951,7 +953,7 @@ The format of the error message is the same as in the other <span class="notrans
 <div class="notranslate">
 
 ```
-cloudlinux-statistics --json 
+cloudlinux-statistics --json
 ```
 ```
 {
@@ -1022,7 +1024,7 @@ cloudlinux-statistics --json --show=cpu,io
 
 * <span class="notranslate">`dbtop`</span> monitors MySQL usage on per user bases.
 * <span class="notranslate">`dbctl`</span> is a command line tool to manage <span class="notranslate">DB Governor</span> configuration.
-* <span class="notranslate">`lveinfo --dbgov`</span> provides historical information about usage and customer restrictions. 
+* <span class="notranslate">`lveinfo --dbgov`</span> provides historical information about usage and customer restrictions.
 * <span class="notranslate">`dbgovchart`</span> generates charts for MySQL usage.
 
 
@@ -1034,20 +1036,20 @@ Utility to monitor MySQL usage. Requires <span class="notranslate">`db_governor`
 
 | | |
 |-|-|
-| <span class="notranslate"> -c </span> |show one time user list (no interactive mode) | 
+| <span class="notranslate"> -c </span> |show one time user list (no interactive mode) |
 | <span class="notranslate"> -r interval </span> |refresh interval for interactive mode (in seconds)|
 
 **Control keys**
 
 | | |
 |-|-|
-|<span class="notranslate"> z </span> |toggle color mode and two-color mode | 
-|<span class="notranslate"> q </span> | <span class="notranslate"> F10, Ctrl-c </span> - quit program | 
-|<span class="notranslate"> u </span> |sort table by username | 
-|<span class="notranslate"> c </span> |sort table by cpu column | 
-|<span class="notranslate"> r </span> |sort table by read column | 
-|<span class="notranslate"> w </span> |sort table by write column | 
-|<span class="notranslate"> l </span> |sort by restriction level | 
+|<span class="notranslate"> z </span> |toggle color mode and two-color mode |
+|<span class="notranslate"> q </span> | <span class="notranslate"> F10, Ctrl-c </span> - quit program |
+|<span class="notranslate"> u </span> |sort table by username |
+|<span class="notranslate"> c </span> |sort table by cpu column |
+|<span class="notranslate"> r </span> |sort table by read column |
+|<span class="notranslate"> w </span> |sort table by write column |
+|<span class="notranslate"> l </span> |sort by restriction level |
 |<span class="notranslate"> t </span> |sort by time before restrictions will be lifted.|
 
 Control keys, that sort table, displays into header of table bold and underlined symbol.
@@ -1077,10 +1079,10 @@ Possible stages:
   * <span class="notranslate"> write </span> - number of bytes (kbytes, mbytes, gbytes) write user reads per second
 
 
-Accounts highlighted in _red_ color means that the account is restricted.  
+Accounts highlighted in _red_ color means that the account is restricted.
 Accounts highlighted in _blue_ color are in cool down period
 
-Command line parameters of <span class="notranslate"> dbtop </span> utility:  
+Command line parameters of <span class="notranslate"> dbtop </span> utility:
 <span class="notranslate"> -r - dbtop </span> refresh period in seconds ( <span class="notranslate"> dbtop -r12 </span> )
 
 #### dbctl
@@ -1128,7 +1130,7 @@ usage: <span class="notranslate"> dbctl command [parameter] [options] </span>
 
 
 
-The default mode is " <span class="notranslate"> limit </span> " - when a user hits limits, the account will be marked as restricted and if the user does not hit the limit again during " <span class="notranslate"> unlimit=1m </span> " account will be unrestricted. This mode doesn't have any additional levels/penalties.  
+The default mode is " <span class="notranslate"> limit </span> " - when a user hits limits, the account will be marked as restricted and if the user does not hit the limit again during " <span class="notranslate"> unlimit=1m </span> " account will be unrestricted. This mode doesn't have any additional levels/penalties.
 <span class="notranslate"> <restrict_mode use="limit" unlimit="1m"/> </span>
 
 Changing the <span class="notranslate"> "unlimit" </span> can be done only via the configuration file (see [Configuration](/cloudlinuxos/cloudlinux_os_components/#configuration-and-operation)).
@@ -1177,7 +1179,7 @@ To unrestrict all users:
 <div class="notranslate">
 
 ```
-dbctl unrestrict-all 
+dbctl unrestrict-all
 ```
 </div>
 
@@ -1338,7 +1340,7 @@ The global options modify settings in the <span class="notranslate"> /etc/cl.sel
 
 **End user options**
 
-All end user settings are contained in individual user's alt_php.ini files and controlled using the `selectorctl` command. 
+All end user settings are contained in individual user's alt_php.ini files and controlled using the `selectorctl` command.
 
 ::: tip Note
 Starting from cagefs-7.6.17, users inside CageFS can manipulate PHP Selector using the end-user options. If a command is run by a user, the `--user` option is not required.
@@ -1391,7 +1393,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 :::
 
 * Get all Python-related information: default version, a list of supported versions, status of Python Selector, a list of users, their applications, etc:
-  
+
     <div class="notranslate">
 
     ```
@@ -1405,9 +1407,9 @@ When running user command as root, please use <span class="notranslate">`--user`
 
 ```
 {
-  "selector_enabled": true | false, 
-  "default_version": "2.7.15", 
-  "result": "success", 
+  "selector_enabled": true | false,
+  "default_version": "2.7.15",
+  "result": "success",
   "timestamp": 1508667174.220027,
   “cache_status”: “ready”,         //  or “updating” during automatic yum cache rebuild
   "available_versions": {   //  begin of  “versions”
@@ -1416,7 +1418,7 @@ When running user command as root, please use <span class="notranslate">`--user`
           “base_dir”: “/opt/alt/alt-python27”   //  empty when version is not installed
           “users”: {   //  begin of  “users”
               “user1”: {   //  begin of “user1”
-	“homedir”: “/home/user1”,		
+	“homedir”: “/home/user1”,
                  “applications”: {    //  begin of “applications”
                      “apps_dir/app1” : {   //   begin of application “apps_dir/app1”
                          “domain”: “cltest1.com”,
@@ -1452,7 +1454,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 </div>
 
 * Get Python script execution timeout in seconds :
-  
+
     <div class="notranslate">
 
     ```
@@ -1482,7 +1484,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 2. Set default Python Selector version as 3.3:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector set --json --interpreter python --default-version 3.3
     ```
@@ -1491,7 +1493,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 3. Set supported Python Selector version as 3.3:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector set --json --interpreter python --supported-versions='{"2.7": false, "3.3": true}'
     ```
@@ -1500,7 +1502,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 4. Install a specific Python version:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector install-version --json --interpreter python --version 2.7
     ```
@@ -1509,7 +1511,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 5. Uninstall a specific Python version:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector uninstall-version --json --interpreter python --version 2.7
     ```
@@ -1518,7 +1520,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 6. Enable a specific Python version:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector enable-version --json --interpreter python --version 2.7
     ```
@@ -1527,7 +1529,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 7. Disable a specific Python version:
 
    <div class="notranslate">
-   
+
     ```
     cloudlinux-selector disable-version --json --interpreter python --version 2.7
     ```
@@ -1535,7 +1537,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 
 8. Set Python script execution timeout value in seconds :
      <div class="notranslate">
-    
+
      ```
      cloudlinux-selector set --json --interpreter=python --run-script-timeout=5
      ```
@@ -1543,27 +1545,27 @@ When running user command as root, please use <span class="notranslate">`--user`
 
 * Change version for an application:
     * For a specific application:
-        
+
         <div class="notranslate">
-        
+
         ```
         cloudlinux-selector set [--json] --interpreter python --user <str> --app-root <str> --new-version <str>
         ```
         </div>
 
     * For all applications that use specific Python version:
-        
+
         <div class="notranslate">
-        
+
         ```
         cloudlinux-selector change-version-multiple --json --interpreter python --from-version <str> --new-version <str>
         ```
         </div>
 
     * For multiple applications:
-        
+
         <div class="notranslate">
-        
+
         ```
         cloudlinux-selector change-version-multiple --json --interpreter python --data  <pairs user:app-root as json> --new-version <str>
         ```
@@ -1573,7 +1575,7 @@ When running user command as root, please use <span class="notranslate">`--user`
 #### *Examples*
 
 1. Change version for a specific application:
-    
+
     <div class="notranslate">
 
     ```
@@ -1582,18 +1584,18 @@ When running user command as root, please use <span class="notranslate">`--user`
     </div>
 
 2. Change version for all applications that use version 2.7.15 to version 3.3.5:
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector change-version-multiple --json --interpreter python --from-version 2.7 --new-version 3.3
     ```
     </div>
 
 3. Change version of multiple application(s) and/or multiple users:
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector change-version-multiple --json --interpreter python --data <pairs user:app-root as json> --new-version <str>
     ```
@@ -1616,7 +1618,7 @@ Common output for all <span class="notranslate">`set`</span> commands:
 
 ```
 {
-  "result": "success", 
+  "result": "success",
   "timestamp": 1508666792.863358
 }
 ```
@@ -1664,9 +1666,9 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
 :::
 
 * Get config file for the user application:
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector read-config [--json] --interpreter python  [--user <str> | --domain <str>] --app-root <str> --config-file <name>
     ```
@@ -1675,10 +1677,10 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **JSON output:**
 
     <div class="notranslate">
-    
+
     ```
     {
-      	"result": "success", 
+      	"result": "success",
      "timestamp": 1508666792.863358
      	 “data”: “content of config file as Base64 encoded string”
     }
@@ -1688,16 +1690,16 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector read-config --json --interpreter python  --user user1 --app-root app_dir/app1 --config-file requirements.txt
     ```
     </div>
 
 * Save config file for user application:
-  
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector save-config [--json] --interpreter python  [--user <str> | --domain <str>] --app-root <str> --config-file <path> --content <content of config file as Base64 encoded string>
     ```
@@ -1706,19 +1708,19 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **JSON output** (the same as for all <span class="notranslate">`set`</span> commands):
 
     <div class="notranslate">
-    
+
     ```
     {
-      	"result": "success", 
+      	"result": "success",
     "timestamp": 1508666792.863358
     }
     ```
     </div>
-    
+
     **Example:**
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector save-config --json --interpreter python  --user user1 --app-root app_dir/app1 --config-file requirements.txt  --content VGh1ICAyIE5vdiAxMDo0MzoxMiBFRFQgMjAxNwo=
     ```
@@ -1731,7 +1733,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
 * Get a list of applications for a specific user:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector [get] [--json] --interpreter python  [--user <str> | --domain <str>]
     ```
@@ -1740,7 +1742,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector get --json --interpreter python  --user user1
     ```
@@ -1750,28 +1752,28 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
 
     :::tip Note
     Python Selector supports only utf-8 symbols for the 'app-root' and 'app-uri' arguments.
-    ::: 
+    :::
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector create [--json] --interpreter python  [--user <str> | --domain <str>]  --app-root <str> --app-uri <str> [--version <str>]  [--startup-file <str>] [--entry-point <str>] [--env-vars <json string>]
     ```
     </div>
 
     **Example:**
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector create --json --interpreter python --app-root my_apps/app1 --domain xyz.com --app-uri apps/app1 --version 2.7 --startup-file run.py --entry-point app
     ```
     </div>
 
 * Start, restart, stop, and destroy user application:
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector (start | restart | stop | destroy) [--json] --interpreter python [--user <str> | --domain <str>] --app-root <str>
     ```
@@ -1780,7 +1782,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector start --json --interpreter python --user user1 --app-root my_apps/app1
     ```
@@ -1791,18 +1793,18 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector --json create --interpreter=python --version=3.3 --user=cltest1 --app-root=p_app2 --app-uri=p_app2_uri --passenger-log-file=/home/cltest1/passenger.log
     ```
     </div>
 
 * Remove a custom path for Passenger log files:
-  
+
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector --json set --interpreter=python --user=cltest1 --app-root=p_app1 --passenger-log-file=""
     ```
@@ -1811,7 +1813,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
 * Change properties for an application:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector set [--json] --interpreter python  [--user <str> | --domain <str>] --app-root <str> [--app-mode <str>]  [--new-app-root <str>]  [--new-domain <str>]  [--new-app-uri <str>]  [--new-version <str>]  [--startup-file <str>] [--entry-point <str>] [--env-vars <json string>] [--config-files <str>]
     ```
@@ -1820,7 +1822,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector set --json --interpreter python  --user user1 --app-root my_apps/app1 --app-mode production  --new-app-root new_apps/new_app1  --new-domain new.xyz.com --new-app-uri new_apps/app1  --new-version 8  --startup-file new_app.js --env-vars { “var1” : “value1”, “var2” : “value2” }  --config-files requirements.txt,reqs.txt
     ```
@@ -1829,7 +1831,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
 * Run <span class="notranslate">`PIP install`</span> for user application:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector install-modules [--json] --interpreter python  [--user <str> | --domain <str>] --app-root <str> --requirements-file <path>
     ```
@@ -1838,7 +1840,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector install-modules --json --interpreter python --user user1 --app-root my_apps/app --requirements-file requirements.txt
     ```
@@ -1847,7 +1849,7 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
 * Optional: install or uninstall Python packages for user application:
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector (install-modules|uninstall-modules) [--json] --interpreter python  [--user <str> | --domain <str>] --app-root <str> --modules <module1[,module2...]>
     ```
@@ -1856,16 +1858,16 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector install-modules --json --interpreter python --user user1 --app-root my_apps/app --modules json-annotate,termcolor
     ```
     </div>
 
 * Optional: run Python script in virtual environment of user application, arguments <span class="notranslate">`<args>`</span> are passed to the script:
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector run-script [--json] --interpreter python  [--user <str | --domain <str>>] --app-root <str> --script-name <str> [-- <args>...]
     ```
@@ -1874,19 +1876,19 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     **Example:**
 
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector run-script --json --interpreter python --user user1 --app-root my_apps/app --script-name test_script -- --script_opt1 --script_opt2 script_arg1 script_arg2
     ```
     </div>
 
     **JSON output:**
-    
+
     <div class="notranslate">
 
     ```
     {
-      	"result": "success", 
+      	"result": "success",
      	"timestamp": 1508666792.863358
        	“data”: “script output as Base64 encoded string”
     }
@@ -1894,12 +1896,12 @@ To start all users CLI commands use <span class="notranslate">`cagefs_enter`</sp
     </div>
 
 * Get Python script execution timeout in seconds :
-    
+
     <div class="notranslate">
-    
+
     ```
     cloudlinux-selector get --json --interpreter=python --get-run-script-timeout
-    ``` 
+    ```
     </div>
 
 ## Ruby Selector
@@ -1914,7 +1916,7 @@ To create application run:
 
 :::tip Note
 Ruby Selector supports only utf-8 symbols for the 'FOLDER_NAME' and 'URI' arguments.
-::: 
+:::
 
 To delete application:
 <div class="notranslate">
@@ -1983,18 +1985,18 @@ cloudlinux-selector [get] [--json] --interpreter nodejs
 <div class="notranslate">
 
 ```
-{  
-"selector_enabled": true | false,   
-"default_version": "6.11.3",   
-"result": "success",   
-"timestamp": 1508667174.220027  
-"cache_status": "ready"         //  or “updating” during automatic yum cache rebuild  
+{
+"selector_enabled": true | false,
+"default_version": "6.11.3",
+"result": "success",
+"timestamp": 1508667174.220027
+"cache_status": "ready"         //  or “updating” during automatic yum cache rebuild
 "available_versions": {   //  begin of  “versions”
       "6.11.3" : {   //   begin of version "6.11.3"
 		"name_modifier": "",
 		"status": "enabled",  //  enabled, disabled, not_installed, installing, removing
 		“base_dir”: “/opt/alt/alt-nodejs6”   //  empty when version is not installed
-		“users”: {   //  begin of  “users”                      
+		“users”: {   //  begin of  “users”
 			“user1”: {   //  begin of “user1”
 				“homedir”: “/home/user1”,
 				“applications”: {    //  begin of “applications”
@@ -2031,12 +2033,12 @@ cloudlinux-selector [get] [--json] --interpreter nodejs
 </div>
 
 Get Nodejs script execution timeout in seconds :
-    
+
 <div class="notranslate">
 
 ```
 cloudlinux-selector get --json --interpreter=nodejs --get-run-script-timeout
-``` 
+```
 </div>
 
 Set default version, supported versions, and status of <span class="notranslate"> Node.js Selector </span> :
@@ -2059,7 +2061,7 @@ cloudlinux-selector set --json --interpreter=nodejs --default-version=<ver>
 ```
 </div>
 
-**Examples**:  
+**Examples**:
 This command enables <span class="notranslate"> Node.js Selector </span> :
 
 <div class="notranslate">
@@ -2118,7 +2120,7 @@ cloudlinux-selector disable-version --json --interpreter nodejs --version 8
 </div>
 
 Set Nodejs script execution timeout value in seconds :
-  
+
 <div class="notranslate">
 
 ```
@@ -2134,7 +2136,7 @@ cloudlinux-selector set [--json] --interpreter nodejs ((--user <str> |  --domain
 ```
 </div>
 
-**Examples** :  
+**Examples** :
 This command changes version for the specific application:
 <div class="notranslate">
 
@@ -2232,7 +2234,7 @@ cloudlinux-selector save-config [--json] --interpreter nodejs  [(--user <str> | 
 ```
 </div>
 
-**Example**:  
+**Example**:
 This command saves config file for <span class="notranslate"> user1 </span> ’s application <span class="notranslate"> app1 </span> :
 
 <div class="notranslate">
@@ -2249,7 +2251,7 @@ cloudlinux-selector [get] [--json] --interpreter nodejs  [(--user <str> |  --dom
 ```
 </div>
 
-**Example**:  
+**Example**:
 This command gets a list of applications for the <span class="notranslate"> user1 </span> :
 
 <div class="notranslate">
@@ -2267,11 +2269,11 @@ cloudlinux-selector create [--json] --interpreter nodejs [(--user <str> | --doma
 ```
 </div>
 
-**Example**:  
+**Example**:
 
 :::tip Note
 NodeJS Selector supports only utf-8 symbols for the 'app-root' and 'app-uri' arguments.
-::: 
+:::
 
 This command creates <span class="notranslate"> user1 </span> 's application for the domain <span class="notranslate"> xyz.com </span> :
 <div class="notranslate">
@@ -2316,7 +2318,7 @@ cloudlinux-selector set [--json] --interpreter nodejs  [(--user <str> | --domain
 
 This command sets a custom path for Passenger log files:
 <div class="notranslate">
-    
+
 ```
 cloudlinux-selector --json create --interpreter=nodejs --user=cltest1 --app-root=p_app2 --app-uri=p_app2_uri --passenger-log-file=/home/cltest1/passenger.log
 ```
@@ -2324,7 +2326,7 @@ cloudlinux-selector --json create --interpreter=nodejs --user=cltest1 --app-root
 
 This command removes a custom path for Passenger log files:
 <div class="notranslate">
-    
+
 ```
 cloudlinux-selector --json set --interpreter=nodejs --user=cltest1 --app-root=p_app1 --passenger-log-file=""
 ```
@@ -2404,12 +2406,12 @@ cloudlinux-selector run-script --json --interpreter nodejs --user user1 --app-ro
 </div>
 
 Get Nodejs script execution timeout in seconds :
-    
+
 <div class="notranslate">
 
 ```
 cloudlinux-selector get --json --interpreter=nodejs --get-run-script-timeout
-``` 
+```
 </div>
 
 Activate virtual environment of NodeJS:
@@ -2421,12 +2423,12 @@ source <home_of_user>/nodevenv/<app_root>/<nodejs_version>/bin/activate
 </div>
 
 This command changes prompt to
-**Example**:  
+**Example**:
 <div class="notranslate">
 
 ```
 [newusr@test ~]$ source /home/newusr/nodevenv/newapp4/newapp3/8/bin/activate
-[newapp4/newapp3 (8)]  
+[newapp4/newapp3 (8)]
 [newusr@test ~]$
 ```
 </div>
@@ -2523,8 +2525,8 @@ You can use the `-h`, `--help` option with commands to get a full list of availa
 Example of the `/usr/sbin/cloudlinux-ssa-manager set-config --help` command output:
 
 ```
-/usr/sbin/cloudlinux-ssa-manager set-config --help  
-............ 
+/usr/sbin/cloudlinux-ssa-manager set-config --help
+............
 
 usage: cloudlinux-ssa-manager set-config [-h]
                                          [--domains-number DOMAINS_NUMBER]
@@ -2628,19 +2630,19 @@ You can use the `-h`, `--help` option with commands to get a full list of availa
 **Example usage:**
 
 Disable user1:
-	
+
 ```
 /usr/sbin/cloudlinux-autotracing disable user1
 {"result": "success"}
 ```
 
 Show list of disabled users:
-	
+
 ```
 /usr/sbin/cloudlinux-autotracing status --list-disabled
 {"result": "success", "disabled_users": ["user1"]}
 ```
-	
+
 Enable all:
 
 ```
@@ -2721,7 +2723,7 @@ cldeploy --key xx-xxxxxx                            # convert RHEL/CentOS to CL 
 cldeploy --key xx-xxxxxx --force-hybridize           # convert RHEL/CentOS 7 to CL7h by using activation key, install control panel components (from v1.61)
 cldeploy --byip --conversion-only                   # convert RHEL/CentOS to CL by ip, don't install control panel components
 cldeploy --components-only                          # install control panel components on already converted system
-cldeploy --hostinglimits                            # update httpd and install mod_hostinglimits 
+cldeploy --hostinglimits                            # update httpd and install mod_hostinglimits
 ```
 </div>
 
@@ -2795,7 +2797,7 @@ cldeploy --hostinglimits                            # update httpd and install m
 **Examples**
 
 * Reset all LVEs settings based on configuration in <span class="notranslate">`/etc/container/ve.cfg`</span>:
-  
+
     <div class="notranslate">
 
     ```
@@ -2804,7 +2806,7 @@ cldeploy --hostinglimits                            # update httpd and install m
     </div>
 
 * Set new default <span class="notranslate">CPU & Physical memory</span> limit:
-  
+
     <div class="notranslate">
 
     ```
@@ -2813,7 +2815,7 @@ cldeploy --hostinglimits                            # update httpd and install m
     </div>
 
 * Reset all LVE's killing processes inside them:
-  
+
     <div class="notranslate">
 
     ```
@@ -2822,7 +2824,7 @@ cldeploy --hostinglimits                            # update httpd and install m
     </div>
 
 * Show list of LVEs and their limits:
-  
+
     <div class="notranslate">
 
     ```
@@ -2836,7 +2838,7 @@ cldeploy --hostinglimits                            # update httpd and install m
 
 **Usage**:
 
-<div class="notranslate"> 
+<div class="notranslate">
 
 ```
 lveps [-p] [-n] [-o <fmt1:width1,...>] [-d] [-c <time>] [-s <style>] [-t] [-h]
@@ -2966,7 +2968,7 @@ Starting from <span class="notranslate">**_lve-utils 3.0-21_**</span> a behaviou
 If **fs.proc_super_gid** was configured by an admin to some existing group, the command will just add Nagios user to this group.
 
 ### cldiag
- 
+
 `cldiag` utility is included in <span class="notranslate">`lve-utils`</span> package and is intended for:
 
 * server diagnostics performed by a server administrator for detecting the most common errors in the configuration or software operation;
@@ -2994,8 +2996,8 @@ In all cases, for the negative checker result, the exit code will be > 0 (at the
 All the checkers support additional <span class="notranslate">`--json`</span> option with the unified output in an appropriate format.
 
 For example:
- 
-<div class="notranslate"> 
+
+<div class="notranslate">
 
 ```
 cldiag --symlinksifowner --json
@@ -3047,14 +3049,14 @@ Checks fs.enforce_symlinksifowner is correctly enabled in <span class="notransla
 Checking specified kernel setup described in [this docs section](/cloudlinuxos/cloudlinux_os_kernel/#symlink-owner-match-protection) for deprecated value and displaying its current value.
 
 Fails if <span class="notranslate">`/proc/sys/fs/enforce_symlinksifowner`</span> contains value `2` (it is deprecated and can cause issues for the system operation).
- 
+
 
 #### check-suexec
 
 Checks suexec has <span class="notranslate">cagefs</span> jail.
 
 In case if <span class="notranslate">CageFS</span> is installed and SuEXEC is on, checking if <span class="notranslate">CageFS</span> is enabled for SuEXEC.
- 
+
 Fails if CageFS is not enabled for suexec binary.
 
 
@@ -3063,7 +3065,7 @@ Fails if CageFS is not enabled for suexec binary.
 Checks suphp has <span class="notranslate">cagefs</span> jail.
 
 In case if <span class="notranslate">CageFS</span> is installed and SuPHP is on, checking if <span class="notranslate">CageFS</span> is enabled for SuPHP.
- 
+
 Fails if CageFS is not enabled for suphp binary.
 
 #### check-usepam
@@ -3071,7 +3073,7 @@ Fails if CageFS is not enabled for suphp binary.
 Checks usepam setting in <span class="notranslate">`/usr/sbin/sshd -T`</span> output.
 
 Checking if <span class="notranslate">`/usr/sbin/sshd -T`</span> output contains <span class="notranslate">`usepam yes`</span> line, which is required for pam_lve correct work with sshd.
- 
+
 Fails if <span class="notranslate">`/usr/sbin/sshd -T`</span> output contains <span class="notranslate">`usepam no`</span>. You could specify `UsePAM yes` in `/etc/ssh/sshd_config`.
 
 ::: tip Note
@@ -3083,7 +3085,7 @@ Cldiag checks `/usr/sbin/sshd -T` output in <span class="notranslate">**lve-util
 Checks <span class="notranslate">`fs.symlinkown_gid`</span>.
 
 First checking if user <span class="notranslate">`Apache`</span> is available in the system (on some panels users `httpd` or <span class="notranslate">`nobody`</span> with special GID are present instead of <span class="notranslate">`Apache`</span>, they are detected correctly as well). Then, if such user exists, checking that his GID equals to the one specified in sysctl or that this user belongs to this supplemental group. If these conditions are met, then the protection effect described in [this docs section](/cloudlinuxos/cloudlinux_os_kernel/#symlink-owner-match-protection) is applied to this user, and the appropriate message will be displayed.
- 
+
 Fails if Apache user is not in the group specified in <span class="notranslate">`/proc/sys/fs/symlinkown_gid`</span>.
 
 #### check-cpanel-packages
@@ -3092,25 +3094,25 @@ Checks existence of all user's packages (cPanel only)
 
 Reading <span class="notranslate">`PLAN=`</span> for all users from <span class="notranslate">`/var/cpanel/users`</span> and checking if all of them are present in <span class="notranslate">`/var/cpanel/packages`</span> and if not, then displaying them in pairs like <span class="notranslate">`user: plan`. `default`</span> and <span class="notranslate">`undefined`</span> packages are excluded from the check.
 
-Fails if users from <span class="notranslate">`/var/cpanel/users/`</span> directory have non-existing packages (packages do not exist in <span class="notranslate">`/var/cpanel/packages/`</span> directory, except for <span class="notranslate">`undefined`</span> and <span class="notranslate">`default`</span>). 
- 
+Fails if users from <span class="notranslate">`/var/cpanel/users/`</span> directory have non-existing packages (packages do not exist in <span class="notranslate">`/var/cpanel/packages/`</span> directory, except for <span class="notranslate">`undefined`</span> and <span class="notranslate">`default`</span>).
+
 
 #### check-defaults-cfg
 
 Checks <span class="notranslate">`/etc/cl.selector/default.cfg`</span>.
 
 Checking that if this config exists, the default PHP version is not disabled in it. Also performing minimal syntax checks for PHP modules settings and displaying the incorrect.
- 
+
 Fails if there are some problems in <span class="notranslate">`/etc/cl.selector/default.cfg`</span> found.
 
 Possible reasons for failure:
-   * Default version is undefined, which means <span class="notranslate">`/etc/cl.selector/default.cfg`</span> file does not contain section [versions] with the defined default version. 
+   * Default version is undefined, which means <span class="notranslate">`/etc/cl.selector/default.cfg`</span> file does not contain section [versions] with the defined default version.
    * Default PHP version is disabled.
 
 #### check-cagefs
 
 All checks for CageFS are described separately in [this docs section](./#sanity-check) and their start from cagefsctl utility is completely equivalent to the start from cldiag and is designed only for a better experience.
- 
+
 This checker includes a set of CageFS sub-checkers, failure of one (or more) of them causes general checker failure.
 
 #### check-php-conf
@@ -3118,11 +3120,11 @@ This checker includes a set of CageFS sub-checkers, failure of one (or more) of 
 Checks <span class="notranslate">`/etc/cl.selector/php.conf`</span>.
 
 Checking the config syntax for acceptable blocks and directives.
- 
+
 Fails if <span class="notranslate">`/etc/cl.selector/php.conf`</span> has incorrect format.
 
  * File contains an invalid parameter (valid parameters: <span class="notranslate">`Directive`</span>, <span class="notranslate">`Default`</span>, <span class="notranslate">`Type`</span>, <span class="notranslate">`Comment`</span>, <span class="notranslate">`Range`</span>, <span class="notranslate">`Remark`</span>).
-  
+
  * File contains an invalid setting for the parameter <span class="notranslate">`Type`</span> (valid settings for the  <span class="notranslate">`Type`</span> parameter: <span class="notranslate">`value`, `list`, `bool`</span>)
 
 #### check-phpselector
@@ -3140,7 +3142,7 @@ Failure reasons:
 ::: tip Note
 The following checkers are available in <span class="notranslate">**lve-utils >= 3.1.2**</span>
 :::
- 
+
 
 #### check-lve-limits
 
@@ -3260,7 +3262,7 @@ This option can be used instead of the following command:
 wget -qq -O - https://repo.cloudlinux.com/cloudlinux/cldoctor/cldoctor.sh | bash
 ```
 
-If this option is provided cldoctor script will be downloaded to a temp directory and executed by cldiag. Also the report will be automatically sent to our support team.  
+If this option is provided cldoctor script will be downloaded to a temp directory and executed by cldiag. Also the report will be automatically sent to our support team.
 
 ### cloudlinux-config
 
@@ -3344,7 +3346,7 @@ Each Level1 option can have nested Level2 options specified using the same synta
 To reset options marked with ** set `null`.
 :::
 
-::: tip Note  
+::: tip Note
 Options marked with `*` are for reseller use only
 :::
 
@@ -3470,7 +3472,7 @@ You should not set soft limit higher than hard limit. cl-quota does not control 
 * **File Discrepancies**: cPanel user files may show different values than actual enforced limits
 * **Cache Mechanism**: Non-root users see cached data from `/etc/container/cl-quotas.cache`
 * **Package Inheritance**: Users inherit package limits unless individual limits are set
-* **Special Values**: 
+* **Special Values**:
   - `0` means inherit from package or uid=0
   - `-1` means unlimited (displayed as dash `-`)
   - Words "default" and "unlimited" are interchangeable with 0 and -1
@@ -3659,18 +3661,18 @@ cl-quota --package-limits
 for userfile in /var/cpanel/users/*; do
   user=$(basename "$userfile")
   plan=$(grep '^PLAN=' "$userfile" | cut -d= -f2)
-  
+
   # Get package limits
   pkg_soft=$(grep '^lve_inodes_soft=' "/var/cpanel/packages/$plan" 2>/dev/null | cut -d= -f2)
   pkg_hard=$(grep '^lve_inodes_hard=' "/var/cpanel/packages/$plan" 2>/dev/null | cut -d= -f2)
-  
+
   # Get user file limits
   user_soft=$(grep '^lve_inodes_soft=' "$userfile" 2>/dev/null | cut -d= -f2)
   user_hard=$(grep '^lve_inodes_hard=' "$userfile" 2>/dev/null | cut -d= -f2)
-  
+
   # Get actual system quota
   actual_quota=$(repquota -u / | grep "^$user " | awk '{print $6 ":" $7}')
-  
+
   echo "User: $user, Package: $plan"
   echo "  Package limits: ${pkg_soft:-N/A}:${pkg_hard:-N/A}"
   echo "  User file limits: ${user_soft:-N/A}:${user_hard:-N/A}"
@@ -3851,9 +3853,9 @@ cloudlinux-limits command [options] [options]
 
 <span class="notranslate">`cloudlinux-limits`</span> allows you to manage limits and states for the next types of users:
 
-* users, created by admin; 
+* users, created by admin;
 * users, created by resellers with reseller limits enabled (see [documentation](/cloudlinuxos/cloudlinux_os_components/#reseller-limits))
-* users, created by resellers without reseller limits enabled. 
+* users, created by resellers without reseller limits enabled.
 
 For resellers' users with reseller limits enabled admin should use the <span class="notranslate">`--for-reseller`</span> option.
 
@@ -3866,7 +3868,7 @@ For resellers' users with reseller limits enabled admin should use the <span cla
     <div class="notranslate">
 
     ```
-    cloudlinux-limits get --json 
+    cloudlinux-limits get --json
     ```
     </div>
 
@@ -3875,7 +3877,7 @@ For resellers' users with reseller limits enabled admin should use the <span cla
     <div class="notranslate">
 
     ```
-    cloudlinux-limits get --username user1  --json 
+    cloudlinux-limits get --username user1  --json
     ```
     </div>
 
@@ -3965,7 +3967,7 @@ For resellers' users with reseller limits enabled admin should use the <span cla
     <div class="notranslate">
 
     ```
-    cloudlinux-limits set --lve-id 1000 --speed 78% --io 8090 --nproc 900 --pmem 300 --vmem 800 --iops 900 --inodes 9090,8989 --maxEntryProcs 90 --mysql-cpu 30 --mysql-io 500 --json 
+    cloudlinux-limits set --lve-id 1000 --speed 78% --io 8090 --nproc 900 --pmem 300 --vmem 800 --iops 900 --inodes 9090,8989 --maxEntryProcs 90 --mysql-cpu 30 --mysql-io 500 --json
     ```
     </div>
 
@@ -3978,11 +3980,11 @@ For resellers' users with reseller limits enabled admin should use the <span cla
     ```
     </div>
 
-5. Set limits for a <span class="notranslate">`DEFAULT`</span> user 
+5. Set limits for a <span class="notranslate">`DEFAULT`</span> user
    :::tip Note
    A <span class="notranslate">`default`</span> user is used to set some preselected limits for just created user\package.
    :::
- 
+
     * Set limits for the admin's <span class="notranslate">`default`</span> user
 
     <div class="notranslate">
@@ -4022,7 +4024,7 @@ For resellers' users with reseller limits enabled admin should use the <span cla
     ```
     </div>
 
-7. Reset all limits to unlimited values for a user 
+7. Reset all limits to unlimited values for a user
 
     * Reset all limits to <span class="notranslate">`unlimited`</span> for the user <span class="notranslate">`user1`</span>
 
@@ -4033,7 +4035,7 @@ For resellers' users with reseller limits enabled admin should use the <span cla
     ```
     </div>
 
-    * Reset all limits to <span class="notranslate">`unlimited`</span> for the reseller's <span class="notranslate">`res1`</span> user <span class="notranslate">`r1user1`</span> 
+    * Reset all limits to <span class="notranslate">`unlimited`</span> for the reseller's <span class="notranslate">`res1`</span> user <span class="notranslate">`r1user1`</span>
 
     <div class="notranslate">
 
@@ -4055,19 +4057,19 @@ For resellers' users with reseller limits enabled admin should use the <span cla
 
 
 9. Get info about a reseller
-    
+
     * Get info about the reseller <span class="notranslate">`res1`</span>
 
     <div class="notranslate">
 
     ```
-    cloudlinux-limits get --reseller-name res1 --json 
+    cloudlinux-limits get --reseller-name res1 --json
     ```
     </div>
 
 
 10. Change reseller limits
-    
+
     * Change <span class="notranslate">`speed`</span> limit for the reseller <span class="notranslate">`res1`</span>
 
     <div class="notranslate">
