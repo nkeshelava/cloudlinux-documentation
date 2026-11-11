@@ -3097,28 +3097,9 @@ These commands automatically update the syslog configuration depending on the sy
 Requires `cagefs-7.6.55-1` or later
 :::
 
-The <span class="notranslate"> nscd </span> socket is available inside CageFS so that users' processes can use the <span class="notranslate"> nscd </span> hosts (DNS) cache. To keep the user and group lists inside CageFS limited to the user's own entries, CageFS turns off the <span class="notranslate"> nscd </span> <span class="notranslate"> `passwd` </span>, <span class="notranslate"> `group` </span> and <span class="notranslate"> `netgroup` </span> caches by setting these lines in <span class="notranslate"> _/etc/nscd.conf_ </span>:
+CageFS turns off the <span class="notranslate"> nscd </span> <span class="notranslate"> `passwd` </span>, <span class="notranslate"> `group` </span> and <span class="notranslate"> `netgroup` </span> caches in <span class="notranslate"> _/etc/nscd.conf_ </span> on every CageFS install and update. The hosts cache stays on.
 
-<div class="notranslate">
-
-```
-enable-cache passwd no
-enable-cache group no
-enable-cache netgroup no
-```
-</div>
-
-The rest of <span class="notranslate"> _/etc/nscd.conf_ </span> is left unchanged, and the hosts cache stays on. CageFS applies this on every CageFS install and update, and when <span class="notranslate"> nscd </span> is installed later, then restarts <span class="notranslate"> nscd </span>. If any of these caches is turned back on in <span class="notranslate"> _/etc/nscd.conf_ </span>, the next CageFS update turns it off again. Servers without <span class="notranslate"> nscd </span> are not affected.
-
-Without these caches, user and group lookups are read from the system files and other configured sources directly. On servers with many accounts, tools that look up many accounts at once (for example, <span class="notranslate"> `ls -l` </span> on a directory with files of many different owners) can be slower.
-
-##### Keeping the nscd passwd, group and netgroup caches
-
-:::warning Warning
-With any of these caches turned on, users inside CageFS can see all users and groups on the server, not only their own.
-:::
-
-If you need these caches anyway, create the <span class="notranslate"> `disable-nscd-hardening` </span> flag. CageFS then no longer changes <span class="notranslate"> _/etc/nscd.conf_ </span>:
+To keep these caches, create the flag below. CageFS then leaves <span class="notranslate"> _/etc/nscd.conf_ </span> as you configure it:
 
 <div class="notranslate">
 
@@ -3127,9 +3108,11 @@ touch /opt/cloudlinux/flags/enabled-flags.d/disable-nscd-hardening.flag
 ```
 </div>
 
-Creating the flag does not turn the caches back on: set the lines you need to <span class="notranslate"> `yes` </span> in <span class="notranslate"> _/etc/nscd.conf_ </span> and restart <span class="notranslate"> nscd </span>. While the flag is set and any of these caches is on, CageFS logs a warning to <span class="notranslate"> _/var/log/cloudlinux/cagefs.log_ </span> on every update, and <span class="notranslate"> `cagefsctl --sanity-check` </span> reports the check as failed.
+:::warning Warning
+With these caches on, users inside CageFS can see all users and groups on the server.
+:::
 
-To go back to the default, remove the flag and apply the CageFS features:
+To go back to the default:
 
 <div class="notranslate">
 
