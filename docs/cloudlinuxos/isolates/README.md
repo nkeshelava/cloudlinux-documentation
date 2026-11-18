@@ -64,20 +64,26 @@ rpm -q cagefs lve-wrappers lve ea-apache24-mod_hostinglimits
 
 On standalone LiteSpeed, a change to a domain's isolation rebuilds `httpd.conf` and reloads LiteSpeed. Each reload makes LiteSpeed load its whole configuration again, which can take a long time on servers with many virtual hosts.
 
-Starting with cagefs 7.6.54-1, `cagefsctl --isolates-enable` does this at most once per command, however many domains, of one or several users, the command names:
+Each of these commands does this at most once per command, however many domains or users it names:
+
+* `cagefsctl --isolates-enable` and `isolatectl site-isolation enable`, starting with cagefs 7.6.54-1
+* `cagefsctl --isolates-disable` and `isolatectl site-isolation disable`, starting with cagefs 7.6.56-1
+* `cagefsctl --isolates-regenerate`, with or without a list of users, starting with cagefs 7.6.56-1. A cagefs package upgrade runs it without one.
+* `cagefsctl --isolates-deny` and `cagefsctl --isolates-deny-all`, starting with cagefs 7.6.56-1
+
+For each of them:
 
 * `httpd.conf` is rebuilt once and LiteSpeed is reloaded once, at the end of the command.
-* A domain that is already isolated causes no rebuild and no reload. The same applies to an addon domain's alias (for example, `addon.maindomain.com`) whose document root is already isolated.
+* A command that changes no LiteSpeed configuration causes no rebuild and no reload. For example, a domain that is already isolated, or an addon domain's alias (for example, `addon.maindomain.com`) whose document root is already isolated.
+* If the command fails part-way, LiteSpeed is still reloaded once for the changes already made.
 
-`cagefsctl --isolates-disable` reloads LiteSpeed only when a domain's document root actually leaves isolation, once for each such document root.
-
-To enable isolation for many domains, pass them to one `cagefsctl --isolates-enable` command instead of running the command once per domain:
+To change isolation for many domains, pass them to one command instead of running the command once per domain:
 
 ```
 # cagefsctl --isolates-enable site1.com site2.com site3.com
 ```
 
-Earlier cagefs versions rebuild `httpd.conf` and reload LiteSpeed once for every domain passed, including domains that are already isolated.
+Earlier cagefs versions rebuild `httpd.conf` and reload LiteSpeed once for every domain passed to `--isolates-enable`, including domains that are already isolated. Before cagefs 7.6.56-1, `--isolates-disable` does it once for each document root that leaves isolation, and `--isolates-regenerate`, `--isolates-deny` and `--isolates-deny-all` once for each user whose LiteSpeed configuration changes.
 
 #### Compatible PHP Handlers
 
@@ -444,6 +450,7 @@ example.com
 3. PHP processes for the domain are restarted outside of isolation
 4. Token directories are cleaned up
 5. If no users have any isolated domains left, the monitoring service is stopped
+6. On standalone LiteSpeed, the web server configuration is rebuilt and LiteSpeed is reloaded once for the whole command (see [Web server reloads on LiteSpeed](#web-server-reloads-on-litespeed))
 
 ***
 
